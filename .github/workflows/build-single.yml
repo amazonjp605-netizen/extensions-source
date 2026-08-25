@@ -19,14 +19,18 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
       - name: Build Novelcool APK
-        run: ./gradlew :src:es:novelcool:assembleDebug
+        run: ./gradlew :src:es:novelcool:assembleDebug --no-daemon --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: novelcool-extension-apk
           path: src/es/novelcool/build/outputs/apk/debug/*.apk
