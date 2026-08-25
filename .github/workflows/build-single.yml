@@ -1,0 +1,32 @@
+name: Build Novelcool Extension
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'src/es/novelcool/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Build Novelcool APK
+        run: ./gradlew :src:es:novelcool:assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: novelcool-extension-apk
+          path: src/es/novelcool/build/outputs/apk/debug/*.apk
