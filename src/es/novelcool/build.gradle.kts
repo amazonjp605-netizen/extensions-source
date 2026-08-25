@@ -1,9 +1,11 @@
-ext {
-    extName = 'Novelcool'
-    pkgNameSuffix = 'es.novelcool'
-    extClass = '.NovelcoolEs'
-    extVersionCode = 1
-    libVersion = '1.4'
+import io.github.keiyoushi.gradle.api.ContentWarning
+
+plugins {
+    alias(kei.plugins.extension)
 }
 
-apply from: "$rootDir/common.gradle"
+keiyoushi {
+    name = "Novelcool"
+    versionCode = 1
+    // contentWarning = ContentWarning.NSFW // Descomenta esta línea si tu fuente incluye contenido para adultos
+}
