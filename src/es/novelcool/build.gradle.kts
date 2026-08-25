@@ -11,7 +11,7 @@ keiyoushi {
     source {
         name = "Novelcool"
         lang = "es"
-        className = "es.novelcool.Novelcool" 
+        classPath = "es.novelcool.Novelcool" 
         
         // Si tu extensión tiene contenido para adultos, quita las dos barras (//) de la siguiente línea:
         // contentWarning = ContentWarning.NSFW
